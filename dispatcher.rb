@@ -7,7 +7,13 @@ class Dispatcher
 
   redis = Redis.new
 
+  treatedJobs = 0;
   loop do
+
+    puts "#{treatedJobs} job(s) treated"
+    nbJobRestant = redis.lrange "crawlerList", 0, -1
+    puts "#{nbJobRestant.length} job(s) restant"
+
     jobStr = redis.lpop "crawlerList"
 
     if !jobStr.nil?
@@ -17,10 +23,14 @@ class Dispatcher
 
       crawler = Crawler.instantiate(type)
       crawler.crawl
+      treatedJobs += 1
     end
 
-    puts "sleep"
-    sleep 5
+    if nbJobRestant = 0
+      puts "sleep"
+      sleep 5
+    end
+
   end
 
 end
