@@ -11,8 +11,8 @@ class Dispatcher
   loop do
 
     puts "#{treatedJobs} job(s) treated"
-    nbJobRestant = redis.lrange "crawlerList", 0, -1
-    puts "#{nbJobRestant.length} job(s) restant"
+    jobsLeft = redis.lrange "crawlerList", 0, -1
+    puts "#{jobsLeft.length} job(s) restant"
 
     jobStr = redis.lpop "crawlerList"
 
@@ -26,7 +26,7 @@ class Dispatcher
       treatedJobs += 1
     end
 
-    if nbJobRestant = 0
+    if jobsLeft = 0
       puts "sleep"
       sleep 5
     end
