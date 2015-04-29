@@ -26,7 +26,7 @@ class Dispatcher
       treatedJobs += 1
     end
 
-    if jobsLeft = 0
+    if (jobsLeft = 0)
       puts "sleep"
       sleep 5
     end
