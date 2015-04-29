@@ -3,7 +3,7 @@ class Crawler
   abstract
 
   def crawl
-    raise 'Override this method please !'
+    raise 'Override this method please ! T\' as pas le droit de faire ca ! so fuck off'
   end
 
   def start
