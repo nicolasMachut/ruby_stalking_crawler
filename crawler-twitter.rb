@@ -27,8 +27,7 @@ class CrawlerTwitter #< Crawler
       formater.setPictures(key[:profile_background_image_url_https])
       formater.setAddress("", "", key[:time_zone])
       users_screen_name.push(key[:screen_name])
-
-      puts formater.getAll
+      formater.saveData
       formater.clearAll
     end
 

@@ -14,7 +14,7 @@ class Formater
         :profils => Array.new
     }
 
-    @@client = Mongo::Client.new([ 'ds053778.mongolab.com:53778' ], :database => 'stalking', :user => 'nicolas', :password => 'epsi')
+    @@client = Mongo::Client.new(['ds053778.mongolab.com:53778'], :database =>'stalking', :user =>'nicolas', :password =>'epsi')
   end
 
   def getAll
@@ -55,8 +55,13 @@ class Formater
     @@data[:adresse][:ville] = city
   end
 
-  def save
-
+  def saveData
+    result = @@client[:personnes].insert_one(@@data)
+    if result == 1 then
+      puts "Data saved."
+    else
+      puts "Problem encountered."
+    end
   end
 
   def clearAll
