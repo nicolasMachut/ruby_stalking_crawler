@@ -22,7 +22,12 @@ class Dispatcher
       type = job["type"]
 
       crawler = Crawler.instantiate(type)
-      crawler.crawl
+      if type == "crawlerTweeter" then
+        crawler.crawl("Edouard0Souan")
+      else
+        crawler.crawl
+      end
+
       treatedJobs += 1
     end
 
@@ -30,7 +35,5 @@ class Dispatcher
       puts "sleep"
       sleep 5
     end
-
   end
-
 end
